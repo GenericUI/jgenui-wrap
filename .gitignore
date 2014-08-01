@@ -1,0 +1,7 @@
+# GEdit
+*~
+
+# NetBeans
+/nbproject/private/
+/build/
+/dist/
