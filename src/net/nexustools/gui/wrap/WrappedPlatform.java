@@ -24,6 +24,18 @@ public abstract class WrappedPlatform<N> extends Platform {
     
     protected WrappedPlatform(String name) {
         super(name);
+        push(new Runnable() {
+            @Override
+            public void run() {
+                invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        makeCurrent();
+                    }
+                }, QueuePlacement.AtBack);
+            }
+        });
+        makeCurrent();
     }
     
     /**

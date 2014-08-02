@@ -34,16 +34,11 @@ public class WrappedLabel extends WrappedWidget implements Label {
     }
 
     @Override
-    public void setText(final String text) {
-        this.text.write(new IfWriter<PropAccessor<String>>() {
+    public void setText(String text) {
+        this.text.write(new UpdateWriter<String>(text) {
             @Override
-            public boolean test(PropAccessor<String> against) {
-                return !text.equals(against.get());
-            }
-            @Override
-            public void write(PropAccessor<String> data) {
-                data.set(text);
-                ((NativeLabel)_n()).nativeSetText(text);
+            public void finish(String value) {
+                ((NativeLabel)_n()).nativeSetText(value);
             }
         });
     }

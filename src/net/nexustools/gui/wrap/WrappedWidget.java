@@ -6,7 +6,6 @@
 
 package net.nexustools.gui.wrap;
 
-import net.nexustools.concurrent.BaseAccessor;
 import net.nexustools.concurrent.BaseWriter;
 import net.nexustools.concurrent.CacheProp;
 import net.nexustools.concurrent.IfReader;
@@ -19,7 +18,6 @@ import net.nexustools.event.FocusListener;
 import net.nexustools.event.VisibilityListener;
 import net.nexustools.gui.AbstractMenu;
 import net.nexustools.gui.Body;
-import net.nexustools.gui.Container;
 import net.nexustools.gui.ContentHolder;
 import net.nexustools.gui.Menu;
 import net.nexustools.gui.Widget;
@@ -47,9 +45,9 @@ import net.nexustools.utils.Testable;
  */
 public class WrappedWidget implements Widget {
     
-    public abstract class NativeWriter<T> implements BaseWriter<PropAccessor<T>>, Testable<T> {
+    public abstract class UpdateWriter<T> implements BaseWriter<PropAccessor<T>>, Testable<T> {
         private final T set;
-        public NativeWriter(T set) {
+        public UpdateWriter(T set) {
             this.set = set;
         }
         @Override
@@ -165,7 +163,7 @@ public class WrappedWidget implements Widget {
 
     @Override
     public void setTag(String name) {
-        tag.write(new NativeWriter<String>(name) {
+        tag.write(new UpdateWriter<String>(name) {
             @Override
             public void finish(String value) {
                 _n().nativeSetTag(value);
@@ -185,7 +183,7 @@ public class WrappedWidget implements Widget {
 
     @Override
     public void setVisible(boolean visible) {
-        this.visible.write(new NativeWriter<Boolean>(visible) {
+        this.visible.write(new UpdateWriter<Boolean>(visible) {
             @Override
             public void finish(Boolean value) {
                 _n().nativeSetVisible(value);

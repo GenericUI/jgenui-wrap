@@ -10,6 +10,7 @@ import net.nexustools.concurrent.IfWriter;
 import net.nexustools.concurrent.Prop;
 import net.nexustools.concurrent.PropAccessor;
 import net.nexustools.gui.Frame;
+import net.nexustools.gui.Widget;
 import net.nexustools.gui.platform.Platform;
 import net.nexustools.utils.Creator;
 
@@ -60,6 +61,11 @@ public class WrappedFrame extends WrappedContainer implements Frame {
 
     @Override
     public void setRaisedBorder(boolean raised) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setMainWidget(Widget mainWidget) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

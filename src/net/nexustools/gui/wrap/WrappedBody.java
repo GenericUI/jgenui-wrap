@@ -25,24 +25,4 @@ public class WrappedBody extends WrappedWindow implements Body {
         super("Body", platform, nativeCreator);
     }
 
-    @Override
-    public void setMainWidget(Widget mainWidget) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setMainWidget(Widget mainWidget, String title) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Container mainContainer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Widget mainWidget() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
