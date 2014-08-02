@@ -6,25 +6,28 @@
 
 package net.nexustools.gui.wrap;
 
-import java.awt.Point;
-import java.awt.Shape;
 import net.nexustools.gui.Widget;
+import net.nexustools.gui.geom.Point;
+import net.nexustools.gui.geom.Shape;
 import net.nexustools.gui.geom.Size;
+import net.nexustools.gui.layout.SizeConstraints;
 
 /**
  *
  * @author katelyn
+ * @param <W>
  */
-public interface NativeWidgetWrap<W extends Widget> {
+public interface NativeWidget {
+    
+    public void nativeSetTag(String tag);
+    public void nativeSetVisible(boolean visible);
     
     public void nativeMove(Point pos);
     public void nativeResize(Size size);
-    public void nativeReshape(Shape Shape);
+    public void nativeReshape(Shape shape);
     
-    public Point nativePos();
-    public Size nativeSize();
-    public Shape nativeShape();
+    public SizeConstraints nativeConstraints();
     
-    public W genUI();
+    public WrappedWidget _w();
     
 }
