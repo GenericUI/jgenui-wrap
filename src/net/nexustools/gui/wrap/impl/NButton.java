@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
 
+import net.nexustools.gui.wrap.WButton;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeAbstractContainer extends NativeContentHolder {
-    
-    public void nativeAdd(NativeWidget nativeWidget);
-    public void nativeRemove(NativeWidget nativeWidget);
-
+public interface NButton<W extends WButton> extends NLabel<W> {
     
 }

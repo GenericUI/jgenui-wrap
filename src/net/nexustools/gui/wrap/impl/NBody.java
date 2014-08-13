@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
 
+import net.nexustools.gui.wrap.WBody;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeContainer extends NativeAbstractContainer {
+public interface NBody<W extends WBody> extends NWindow<W> {
     
 }

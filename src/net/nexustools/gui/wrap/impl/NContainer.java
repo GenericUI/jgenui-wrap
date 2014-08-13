@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
 
+import net.nexustools.gui.wrap.WContainer;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeButton extends NativeTextWidget, NativeActivateable {}
+public interface NContainer<W extends WContainer> extends NAbstractContainer<W> {
+    
+}

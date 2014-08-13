@@ -7,54 +7,51 @@
 package net.nexustools.gui.wrap;
 
 import java.util.Iterator;
-import net.nexustools.gui.ContentHolder;
-import net.nexustools.gui.Widget;
+import java.util.ListIterator;
 import net.nexustools.gui.geom.Point;
 import net.nexustools.gui.geom.Rect;
 import net.nexustools.gui.geom.Size;
-import net.nexustools.gui.platform.Platform;
-import net.nexustools.utils.Creator;
+import net.nexustools.gui.impl.ContentHolder;
+import net.nexustools.gui.impl.Widget;
+import net.nexustools.gui.style.ID;
+import net.nexustools.gui.wrap.impl.NAbstractContainer;
 
 /**
  *
  * @author katelyn
  */
-public class WrappedContentHolder extends WrappedWidget implements ContentHolder<Widget> {
-    
-    protected WrappedContentHolder(String tagName, Platform platform, NativeContentHolder nativeWidget) {
-        super(tagName, platform, nativeWidget);
-    }
-    protected WrappedContentHolder(String tagName, Platform platform, Creator<? extends NativeContentHolder, ? extends WrappedContentHolder> nativeCreator) {
-        super(tagName, platform, nativeCreator);
+public abstract class WContentHolder<T, N extends NAbstractContainer> extends WWidget<N> implements ContentHolder<T> {
+
+    public WContentHolder(String tag, WPlatform platform) {
+        super(tag, platform);
     }
 
-    @Override
-    public void iterate(ContentIterator<Widget> it) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Rect contentBounds() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public Point contentOffset() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public Size contentSize() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Iterator<Widget> iterator() {
+    public Widget findByID(ID id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Iterable<Widget> searchByID(ID id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Iterable<Widget> search(ID.Path path) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    void replaceNative(NativeWidget what, NativeWidget with) {
-        ((NativeContentHolder)_n()).nativeReplace(what, with);
+    public void clearContent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

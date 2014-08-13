@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
+
+import net.nexustools.gui.layout.Layout;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeBody extends NativeWindow {
+public interface NLayoutAdaptor {
+    
+    public void nativeAttachLayout(Layout layout);
     
 }

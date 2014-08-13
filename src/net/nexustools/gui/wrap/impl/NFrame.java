@@ -4,15 +4,17 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
 
+import net.nexustools.gui.wrap.WFrame;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeFrame extends NativeContainer {
+public interface NFrame<W extends WFrame> extends NContainer<W> {
     
     public void nativeSetTitle(String title);
+    public void nativeSetRaisedBorder(boolean raisedBorder);
     
 }

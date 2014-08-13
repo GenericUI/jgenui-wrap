@@ -6,56 +6,51 @@
 
 package net.nexustools.gui.wrap;
 
-import net.nexustools.gui.Menu;
-import net.nexustools.gui.Toolbar;
-import net.nexustools.gui.Window;
-import net.nexustools.gui.platform.Platform;
-import net.nexustools.gui.render.StyleSheet;
-import net.nexustools.utils.Creator;
+import net.nexustools.gui.impl.Menu;
+import net.nexustools.gui.impl.Toolbar;
+import net.nexustools.gui.impl.Window;
+import net.nexustools.gui.style.StyleSheet;
+import net.nexustools.gui.wrap.impl.NWindow;
 
 /**
  *
  * @author katelyn
  */
-public class WrappedWindow extends WrappedFrame implements Window {
+public abstract class WWindow<N extends NWindow> extends WFrame<N> implements Window {
 
-    protected WrappedWindow(String tagName, Platform platform, NativeWindow nativeWidget) {
-        super(tagName, platform, nativeWidget);
-        visible.set(false); // Windows start invisible
-    }
-    protected WrappedWindow(String tagName, Platform platform, Creator<? extends NativeWindow, ? extends WrappedWindow> nativeCreator) {
-        super(tagName, platform, nativeCreator);
+    public WWindow(String tag, WPlatform platform) {
+        super(tag, platform);
         visible.set(false); // Windows start invisible
     }
 
-    @Override
-    public Menu menu(String pos) {
+    public Menu menuBar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void addMenu(String pos, Menu menu) {
+    public void setMenuBar(Menu menu) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void addToolbar(Toolbar toolbar) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void removeToolbar(Toolbar toolbar) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public StyleSheet styleSheet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void setStyleSheet(StyleSheet styleSheet) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        if(this.visible.update(visible))
+            createAndUpdate(visibleUpdate);
     }
     
 }

@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 
-package net.nexustools.gui.wrap;
+package net.nexustools.gui.wrap.impl;
+
+import net.nexustools.gui.wrap.WWindow;
 
 /**
  *
  * @author katelyn
  */
-public interface NativeActivateable {
+public interface NWindow<W extends WWindow> extends NFrame<W> {
     
-    public void nativeAddActivateListener();
-    public void nativeRemoveActivateListener();
+    public void nativeAttachMenu();
     
 }

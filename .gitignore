@@ -5,3 +5,6 @@
 /nbproject/private/
 /build/
 /dist/
+
+# Mac
+*.DS_Store
