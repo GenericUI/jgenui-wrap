@@ -6,8 +6,11 @@
 package net.nexustools.gui.wrap;
 
 import java.util.ArrayList;
+import java.util.EventListener;
 import net.nexustools.concurrent.BaseReader;
+import net.nexustools.concurrent.BaseWriter;
 import net.nexustools.concurrent.IfReader;
+import net.nexustools.concurrent.ListAccessor;
 import net.nexustools.concurrent.Lockable;
 import net.nexustools.concurrent.Prop;
 import net.nexustools.concurrent.PropAccessor;
@@ -16,6 +19,7 @@ import net.nexustools.concurrent.Reader;
 import net.nexustools.concurrent.SoftWriteReader;
 import net.nexustools.data.Storage;
 import net.nexustools.event.DefaultEventDispatcher;
+import net.nexustools.event.Event;
 import net.nexustools.event.EventDispatcher;
 import net.nexustools.event.EventListenerRedirect;
 import net.nexustools.event.FocusListener;
@@ -283,7 +287,13 @@ public abstract class WWidget<N extends NWidget> implements Widget {
         return false;
     }
 
+    final DelayedNativeUpdate requestFocus = new DelayedNativeUpdate() {
+        public void update(N nativeWidget) {
+            nativeWidget.nativeRequestFocus();
+        }
+    };
     public void requestFocus() {
+        update(requestFocus);
     }
 
     public boolean isFocusable() {
@@ -543,6 +553,52 @@ public abstract class WWidget<N extends NWidget> implements Widget {
 
     public Widget effective() {
         return this;
+    }
+    
+    public abstract class WrapEventDispatcher<L extends EventListener, E extends Event> extends EventDispatcher<WPlatform, L, E> {
+
+        public WrapEventDispatcher() {
+            super(platform);
+        }
+
+        public void init(final N widget) {
+            listeners.write(new BaseWriter<ListAccessor<L>>() {
+                public void write(ListAccessor<L> data, Lockable lock) {
+                    lock.lock();
+                    try {
+                        if(data.isTrue())
+                            connect(widget);
+                    } finally {
+                        lock.unlock();
+                    }
+                }
+            });
+        }
+
+        public abstract void connect(N widget);
+        public abstract void disconnect(N widget);
+
+        @Override
+        public final void connect() {
+            update(new WWidget.NativeUpdate<N>() {
+                public void update(N nativeWidget) {
+                    connect(nativeWidget);
+                }
+            });
+        }
+
+        @Override
+        public final void disconnect() {
+            update(new WWidget.NativeUpdate<N>() {
+                public void update(N nativeWidget) {
+                    disconnect(nativeWidget);
+                }
+            });
+        }
+    }
+
+    public String[] psuedoStates() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

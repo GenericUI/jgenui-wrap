@@ -14,4 +14,7 @@ import net.nexustools.gui.wrap.WButton;
  */
 public interface NButton<W extends WButton> extends NLabel<W> {
     
+    public void attachActionListener(Runnable callback);
+    public void detachActionListener();
+    
 }

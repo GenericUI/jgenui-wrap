@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import net.nexustools.concurrent.IfUpdateWriter;
 import net.nexustools.concurrent.ListAccessor;
+import net.nexustools.concurrent.Lockable;
 import net.nexustools.concurrent.PropList;
 import net.nexustools.concurrent.Reader;
 import net.nexustools.gui.impl.AbstractContainer;
@@ -31,7 +32,7 @@ public abstract class WAbstractContainer<N extends NAbstractContainer> extends W
     @Override
     protected void initNative(final N na) {
         iterate(new PropList.PropIterator<Widget>() {
-            public void iterate(ListIterator<Widget> iterator) {
+            public void iterate(ListIterator<Widget> iterator, Lockable lock) {
                 while(iterator.hasNext()) {
                     WWidget widget = (WWidget)iterator.next();
                     widget.createAndUpdate(new NativeUpdate<NWidget>() {

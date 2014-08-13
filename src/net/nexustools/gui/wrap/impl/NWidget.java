@@ -26,6 +26,7 @@ public interface NWidget<W extends WWidget> {
     public void nativeRebound(int x, int y, int w, int h);
     
     public void nativeBindContextMenu(Menu contextMenu);
+    public void nativeRequestFocus();
 
     public Size nativeMinSize();
     public Size nativeMaxSize();

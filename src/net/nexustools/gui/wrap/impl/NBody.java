@@ -14,4 +14,7 @@ import net.nexustools.gui.wrap.WBody;
  */
 public interface NBody<W extends WBody> extends NWindow<W> {
     
+    public void nativeSetGlassWidget(NWidget glassWidget);
+    public void nativeSetTitleWidget(NWidget titleWidget);
+    
 }

@@ -7,13 +7,8 @@
 package net.nexustools.gui.wrap;
 
 import net.nexustools.concurrent.Prop;
-import net.nexustools.gui.event.ActionListener;
-import net.nexustools.gui.impl.AbstractAction;
-import net.nexustools.gui.impl.Button;
 import net.nexustools.gui.impl.Image;
 import net.nexustools.gui.impl.Label;
-import net.nexustools.gui.impl.Shortcut;
-import net.nexustools.gui.wrap.impl.NButton;
 import net.nexustools.gui.wrap.impl.NLabel;
 
 /**

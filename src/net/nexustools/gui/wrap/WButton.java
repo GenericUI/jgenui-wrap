@@ -6,10 +6,11 @@
 
 package net.nexustools.gui.wrap;
 
+import net.nexustools.event.EventDispatcher;
 import net.nexustools.gui.event.ActionListener;
+import net.nexustools.gui.event.ActionListener.ActionEvent;
 import net.nexustools.gui.impl.AbstractAction;
 import net.nexustools.gui.impl.Button;
-import net.nexustools.gui.impl.Image;
 import net.nexustools.gui.impl.Shortcut;
 import net.nexustools.gui.wrap.impl.NButton;
 
@@ -19,8 +20,36 @@ import net.nexustools.gui.wrap.impl.NButton;
  */
 public abstract class WButton<N extends NButton> extends WLabel<N> implements Button {
 
+    final Runnable activate = new Runnable() {
+        public void run() {
+            activateDispatcher.dispatch(new EventDispatcher.Processor<ActionListener, ActionEvent>() {
+                public ActionEvent create() {
+                    return new ActionEvent(WButton.this);
+                }
+                public void dispatch(ActionListener listener, ActionEvent event) {
+                    listener.activated(event);
+                }
+            });
+        }
+    };
+    final WrapEventDispatcher<ActionListener, ActionEvent> activateDispatcher = new WrapEventDispatcher<ActionListener, ActionEvent>() {
+        @Override
+        public void connect(N widget) {
+            widget.attachActionListener(activate);
+        }
+        @Override
+        public void disconnect(N widget) {
+            widget.detachActionListener();
+        }
+    };
     public WButton(String tag, WPlatform platform) {
         super(tag, platform);
+    }
+
+    @Override
+    protected void initNative(N na) {
+        activateDispatcher.init(na);
+        super.initNative(na);
     }
 
     public AbstractAction action() {
@@ -36,11 +65,11 @@ public abstract class WButton<N extends NButton> extends WLabel<N> implements Bu
     }
 
     public void addActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        activateDispatcher.add(actionListener);
     }
 
     public void removeActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        activateDispatcher.remove(actionListener);
     }
 
     public boolean selectable() {
@@ -56,7 +85,7 @@ public abstract class WButton<N extends NButton> extends WLabel<N> implements Bu
     }
 
     public void activate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        activate.run();
     }
 
     

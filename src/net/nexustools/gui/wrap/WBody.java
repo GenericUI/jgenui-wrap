@@ -6,9 +6,12 @@
 
 package net.nexustools.gui.wrap;
 
+import net.nexustools.concurrent.Prop;
 import net.nexustools.gui.err.UnsupportedPlatformOperation;
 import net.nexustools.gui.impl.Action;
 import net.nexustools.gui.impl.Body;
+import net.nexustools.gui.impl.Frame;
+import net.nexustools.gui.impl.Label;
 import net.nexustools.gui.impl.Widget;
 import net.nexustools.gui.wrap.impl.NBody;
 
@@ -18,16 +21,11 @@ import net.nexustools.gui.wrap.impl.NBody;
  */
 public abstract class WBody<N extends NBody> extends WWindow<N> implements Body {
 
+    final Prop<Label> titleWidget = new Prop();
+    final Prop<Widget> mainWidget = new Prop();
+    final Prop<Widget> glassWidget = new Prop();
     public WBody(String tag, WPlatform platform) {
         super(tag, platform);
-    }
-
-    public Widget titleWidget() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void setTitleWidget(Widget widget) throws UnsupportedPlatformOperation {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void addAction(Action action) {
@@ -48,6 +46,63 @@ public abstract class WBody<N extends NBody> extends WWindow<N> implements Body 
 
     public int indexOfAction(Action action) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Widget mainWidget() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Label titleWidget() {
+        return titleWidget.get();
+    }
+
+    public void setTitleWidget(Label widget) throws UnsupportedPlatformOperation {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Widget glassWidget() {
+        return glassWidget.get();
+    }
+
+    final DelayedNativeUpdate glassWidgetUpdate = new DelayedNativeUpdate() {
+        public void update(N nativeWidget) {
+        }
+    };
+    public void setGlassWidget(Widget widget) {
+        if(glassWidget.update(widget))
+            update(glassWidgetUpdate);
+    }
+
+    public void insertAction(Action action, Action after) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void clearActions() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Action nextAction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setNextAction(Action action) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Frame pop() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Frame peek() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void push(Frame frame) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Frame current() {
+        return this;
     }
     
 }

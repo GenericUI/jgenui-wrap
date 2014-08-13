@@ -16,5 +16,6 @@ import net.nexustools.gui.wrap.WContentHolder;
 public interface NContentHolder<W extends WContentHolder> extends NWidget<W> {
     
     public Vec4f nativeInsets();
+    public void nativeClearContent();
     
 }

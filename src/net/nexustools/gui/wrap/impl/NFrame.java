@@ -16,5 +16,6 @@ public interface NFrame<W extends WFrame> extends NContainer<W> {
     
     public void nativeSetTitle(String title);
     public void nativeSetRaisedBorder(boolean raisedBorder);
+    public void nativeSetMainWidget(NWidget mainWidget);
     
 }
