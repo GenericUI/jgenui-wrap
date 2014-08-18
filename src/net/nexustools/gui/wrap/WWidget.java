@@ -5,18 +5,17 @@
  */
 package net.nexustools.gui.wrap;
 
-import java.util.ArrayList;
 import java.util.EventListener;
-import net.nexustools.concurrent.BaseReader;
-import net.nexustools.concurrent.BaseWriter;
-import net.nexustools.concurrent.IfReader;
 import net.nexustools.concurrent.ListAccessor;
 import net.nexustools.concurrent.Lockable;
 import net.nexustools.concurrent.Prop;
 import net.nexustools.concurrent.PropAccessor;
 import net.nexustools.concurrent.PropList;
-import net.nexustools.concurrent.Reader;
-import net.nexustools.concurrent.SoftWriteReader;
+import net.nexustools.concurrent.logic.Reader;
+import net.nexustools.concurrent.logic.SoftWriteReader;
+import net.nexustools.concurrent.logic.BaseReader;
+import net.nexustools.concurrent.logic.BaseWriter;
+import net.nexustools.concurrent.logic.IfReader;
 import net.nexustools.data.Storage;
 import net.nexustools.event.DefaultEventDispatcher;
 import net.nexustools.event.Event;
@@ -599,6 +598,14 @@ public abstract class WWidget<N extends NWidget> implements Widget {
 
     public String[] psuedoStates() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void move(int x, int y) {
+        move(new Point(x, y));
+    }
+
+    public void resize(int w, int h) {
+        resize(new Size(w, h));
     }
 
 }

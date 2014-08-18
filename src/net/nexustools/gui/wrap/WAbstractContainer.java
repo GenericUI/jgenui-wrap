@@ -8,11 +8,10 @@ package net.nexustools.gui.wrap;
 
 import java.util.Iterator;
 import java.util.ListIterator;
-import net.nexustools.concurrent.IfUpdateWriter;
 import net.nexustools.concurrent.ListAccessor;
 import net.nexustools.concurrent.Lockable;
 import net.nexustools.concurrent.PropList;
-import net.nexustools.concurrent.Reader;
+import net.nexustools.concurrent.logic.IfUpdateWriter;
 import net.nexustools.gui.impl.AbstractContainer;
 import net.nexustools.gui.impl.Widget;
 import net.nexustools.gui.wrap.impl.NAbstractContainer;
