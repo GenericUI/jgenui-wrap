@@ -6,6 +6,7 @@
 
 package net.nexustools.gui.wrap;
 
+import net.nexustools.Application;
 import net.nexustools.concurrent.Prop;
 import net.nexustools.gui.impl.Frame;
 import net.nexustools.gui.impl.Widget;
@@ -20,8 +21,11 @@ public abstract class WFrame<N extends NFrame> extends WContainer<N> implements 
 
     final Prop<String> title = new Prop();
     final Prop<Boolean> raisedBorder = new Prop<Boolean>(false);
-    public WFrame(String tag, WPlatform platform) {
+    public WFrame(String title, String tag, WPlatform platform) {
         super(tag, platform);
+    }
+    public WFrame(String tag, WPlatform platform) {
+        this(Application.name(), tag, platform);
     }
 
     public String title() {
